@@ -371,12 +371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f3acc56ec348b4083a3c03089657e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundaryColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.5}
-  particleColor: {r: 0.2, g: 0.6, b: 1, a: 0.8}
-  colorByVelocity: 1
-  colorByDensity: 0
-  particleSize: 0.5
-  showVelocityVectors: 0
+  _boundaryColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.5}
+  _particleColor: {r: 0.2, g: 0.6, b: 1, a: 0.8}
+  _colorByVelocity: 1
+  _colorByDensity: 0
+  _particleSize: 0.5
+  _showVelocityVectors: 1
 --- !u!4 &1002607899
 Transform:
   m_ObjectHideFlags: 0
