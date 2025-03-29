@@ -16,5 +16,10 @@ public struct FluidSimulationParameters : IComponentData
     public float OverlapPreventionStrength;
     public float ParticleMass;
     public float InitialViscosity;
-    public int ParticleCount;
+   
+    public float4 FluidColor;
+    public float Smoothness;
+    public float FresnelPower;
+    public float DensityThreshold;
+    public int MetaballResolution;
 }

@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _emissionShape: 1
-  _emissionRadius: 0.5
+  _emissionRadius: 3
   _emissionSize: {x: 1, y: 1}
   _emissionRate: 100
   _maxParticles: 1000
@@ -205,20 +205,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb68467650359d479d80f4df3e907aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothingRadius: 1
-  _particleRadius: 0.5
-  _targetDensity: 1
-  _pressureCoefficient: 200
+  _smoothingRadius: 3
+  _particleRadius: 1
+  _targetDensity: 100
+  _pressureCoefficient: 500
   _viscosityCoefficient: 10
-  _gravityForce: 9.8
+  _gravityForce: 200
   _boundaryMin: {x: -10, y: -10}
   _boundaryMax: {x: 10, y: 10}
-  _boundaryDamping: 0.5
-  _fixedDeltaTime: 0.005
+  _boundaryDamping: 0
+  _fixedDeltaTime: 0.1
   _overlapPreventionStrength: 1
   _particleMass: 1
   _initialViscosity: 0.5
-  _particleCount: 1000
+  _fluidColor: {r: 1, g: 1, b: 1, a: 0.85}
+  _densityThreshold: 2
+  _smoothness: 1
+  _fresnelPower: 9.08
+  _metaballResolution: 1024
 --- !u!4 &1881268041
 Transform:
   m_ObjectHideFlags: 0

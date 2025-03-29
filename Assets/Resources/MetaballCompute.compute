@@ -1,0 +1,51 @@
+#pragma kernel CSMain
+
+StructuredBuffer<float3> Particles;
+int ParticleCount;
+float SmoothingRadius;
+float ParticleRadius;
+float DensityMultiplier = 50.0;
+
+float2 BoundaryMin;
+float2 BoundaryMax;
+float2 BoundaryCenter;
+
+RWTexture2D<float> Result;
+
+float QuadraticKernel(float2 r, float h)
+{
+    float dist = length(r);
+    
+    if (dist >= h)
+        return 0;
+        
+    float q = 1.0 - (dist * dist) / (h * h);
+    return q * q;
+}
+
+[numthreads(8,8,1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    uint width, height;
+    Result.GetDimensions(width, height);
+    
+    float2 texCoord = float2(id.xy) / float2(width - 1, height - 1);
+    float2 position = lerp(BoundaryMin, BoundaryMax, texCoord);
+    
+    float density = 0;
+    
+    for (int i = 0; i < ParticleCount; i++)
+    {
+        float2 particlePos = Particles[i].xy;
+        float2 r = position - particlePos;
+        float dist = length(r);
+        
+        if (dist < SmoothingRadius)
+        {
+            float contribution = QuadraticKernel(r, SmoothingRadius);
+            density += contribution;
+        }
+    }
+    
+    Result[id.xy] = density * DensityMultiplier;
+}

@@ -49,8 +49,25 @@ public class FluidSimulationParametersAuthoring : MonoBehaviour
     [Range(0.1f, 5.0f)] [Tooltip("Mass of particle")]
     [SerializeField] private float _initialViscosity = 0.5f;
     
-    [Tooltip("ParticleCount")]
-    [SerializeField] private int _particleCount = 1000;
+    [Header("Rendering Settings")]
+    [Tooltip("Color of the fluid")]
+    [SerializeField] private Color _fluidColor = new(0.2f, 0.6f, 0.9f, 0.85f);
+    
+    [Range(0.1f, 2.0f)]
+    [Tooltip("Threshold for density visualization (lower = more expansive fluid)")]
+    [SerializeField] private float _densityThreshold = 0.5f;
+    
+    [Range(0.0f, 1.0f)]
+    [Tooltip("Surface shininess/reflectivity")]
+    [SerializeField] private float _smoothness = 0.8f;
+    
+    [Range(1.0f, 10.0f)]
+    [Tooltip("Strength of edge highlighting effect")]
+    [SerializeField] private float _fresnelPower = 5.0f;
+    
+    [Range(256, 1024)]
+    [Tooltip("Resolution of metaball texture (higher = smoother but more expensive)")]
+    [SerializeField] private int _metaballResolution = 512;
     
     public class FluidSimulationParametersBaker : Baker<FluidSimulationParametersAuthoring>
     {
@@ -73,7 +90,12 @@ public class FluidSimulationParametersAuthoring : MonoBehaviour
                 OverlapPreventionStrength = authoring._overlapPreventionStrength,
                 ParticleMass = authoring._particleMass,
                 InitialViscosity = authoring._initialViscosity,
-                ParticleCount = authoring._particleCount
+                
+                FluidColor = new float4(authoring._fluidColor.r, authoring._fluidColor.g, authoring._fluidColor.b, authoring._fluidColor.a),
+                DensityThreshold = authoring._densityThreshold,
+                Smoothness = authoring._smoothness,
+                FresnelPower = authoring._fresnelPower,
+                MetaballResolution = authoring._metaballResolution
             });
         }
     }
